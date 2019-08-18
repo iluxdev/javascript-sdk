@@ -1,7 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 
-const entry = exports.entry = process.env.LIVE_QUERY ? './src/index-live-query.js' : './src/index.js';
+const entry = (exports.entry = process.env.LIVE_QUERY
+  ? './src/index-live-query.js'
+  : './src/index.js');
 exports.name = process.env.LIVE_QUERY ? 'av-live-query' : 'av';
 
 exports.create = () => ({
@@ -29,17 +31,17 @@ exports.create = () => ({
         include: [
           path.resolve(__dirname, '../src'),
           path.resolve(__dirname, '../node_modules/weapp-polyfill'),
+          path.resolve(__dirname, '../node_modules/taro-polyfill'),
         ],
         loader: 'babel-loader',
         query: {
           presets: ['es2015'],
         },
-      }, {
+      },
+      {
         test: /\.js$/,
         enforce: 'pre',
-        include: [
-          path.resolve(__dirname, '../src'),
-        ],
+        include: [path.resolve(__dirname, '../src')],
         use: [
           {
             loader: 'webpack-strip-block',
@@ -53,9 +55,7 @@ exports.create = () => ({
     ],
   },
   plugins: [
-    new webpack.EnvironmentPlugin([
-      'CLIENT_PLATFORM',
-    ]),
+    new webpack.EnvironmentPlugin(['CLIENT_PLATFORM']),
     new webpack.optimize.UglifyJsPlugin({
       include: /-min\.js$/,
       sourceMap: true,

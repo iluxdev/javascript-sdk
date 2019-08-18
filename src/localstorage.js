@@ -1,5 +1,7 @@
 var Promise = require('./promise');
-var localStorage = require('./utils/localstorage');
+if (process.env.CLIENT_PLATFORM !== 'Taro') {
+  var localStorage = require('./utils/localstorage');
+}
 
 var syncApiNames = ['getItem', 'setItem', 'removeItem', 'clear'];
 

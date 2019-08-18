@@ -119,7 +119,8 @@ module.exports = function(AV) {
 
     if (
       process.env.CLIENT_PLATFORM === 'ReactNative' ||
-      process.env.CLIENT_PLATFORM === 'Weapp'
+      process.env.CLIENT_PLATFORM === 'Weapp' ||
+      process.env.CLIENT_PLATFORM === 'Taro'
     ) {
       if (data && data.blob) {
         this._extName = extname(data.blob.uri);

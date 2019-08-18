@@ -17,6 +17,7 @@
     "build:browser": "cross-env CLIENT_PLATFORM=Browser webpack --config webpack/browser.js",
     "build:rn": "cross-env CLIENT_PLATFORM=ReactNative webpack --config webpack/rn.js",
     "build:weapp": "cross-env CLIENT_PLATFORM=Weapp webpack --config webpack/weapp.js",
+    "build:taro": "cross-env CLIENT_PLATFORM=Taro webpack --config webpack/taro.js",
     "build": "gulp build && npm run build:live-query",
     "build:live-query": "export LIVE_QUERY=1 && npm run build:browser && npm run build:rn && npm run build:weapp",
     "prepublishOnly": "./script/check-version.js"
@@ -59,6 +60,7 @@
     "pretty-quick": "^1.4.1",
     "qiniu": "^6.1.11",
     "should": "^11.1.0",
+    "taro-polyfill": "iluxdev/weapp-polyfill#av-taro",
     "typescript": "^2.4.1",
     "weapp-polyfill": "^3.1.2",
     "webpack": "^3.11.0",
@@ -85,6 +87,12 @@
     "./src/polyfills/index.js": "./src/polyfills/index-weapp.js",
     "./dist/node/index.js": "./dist/av-weapp-min.js",
     "./dist/node/index-live-query.js": "./dist/av-live-query-weapp-min.js"
+  },
+  "taro": {
+    "./src/utils/localstorage.js": "./src/utils/localstorage-browser.js",
+    "./src/polyfills/index.js": "./src/polyfills/index-taro.js",
+    "./dist/node/index.js": "./dist/av-taro-min.js",
+    "./dist/node/index-live-query.js": "./dist/av-live-query-taro-min.js"
   },
   "typings": "./storage.d.ts",
   "types": "./storage.d.ts",

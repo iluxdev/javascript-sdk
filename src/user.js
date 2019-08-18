@@ -1508,6 +1508,8 @@ module.exports = function(AV) {
           var json = user._toFullJSON();
           json._id = user.id;
           json._sessionToken = user._sessionToken;
+          console.log(AV.localStorage);
+          console.log(json);
           return AV.localStorage
             .setItemAsync(
               AV._getAVPath(AV.User._CURRENT_USER_KEY),
